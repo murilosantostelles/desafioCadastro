@@ -1,4 +1,4 @@
-package leitorFormulario;
+package formReader;
 
 import java.io.BufferedReader;
 import java.io.File;
