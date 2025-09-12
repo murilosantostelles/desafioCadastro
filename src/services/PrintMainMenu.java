@@ -21,13 +21,7 @@ public class PrintMainMenu {
             try {
                 String linha = leitor.nextLine();
                 opcao = Integer.parseInt(linha);
-                if(opcao < 1 || opcao > 6){
-                    System.out.println("Por favor, digite um número Válido.");
-                    imprimirMenuPrincipal();
-                }else {
-                    System.out.println("Opção "+opcao+" selecionada com Sucesso.");
-                    return opcao;
-                }
+                return opcao;
             } catch (NumberFormatException e){
                 System.out.println("Erro: Entrada de dados inválida. Apenas números de 1 a 6 podem ser inseridos.");
                 imprimirMenuPrincipal();

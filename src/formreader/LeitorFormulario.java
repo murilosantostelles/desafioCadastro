@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class LeitorFormulario {
-    public void lerFormulario(){
+    public List<String> lerFormulario(){
         File file = new File("src/resources/formulario.txt");
         try(FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr)){
@@ -17,5 +18,6 @@ public class LeitorFormulario {
         }catch (IOException e){
             e.printStackTrace();
         }
+        return null;
     }
 }
