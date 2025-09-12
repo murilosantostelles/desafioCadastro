@@ -10,17 +10,16 @@ public class Pet {
     private String raca; // não permitir digitação de número e nem de caracteres epeciais
 
 
-    public Pet(String nomeCompleto, PetType petType, PetGender petGender) {
-        this.nomeCompleto = nomeCompleto;
-        this.petType = petType;
-        this.petGender = petGender;
-    }
-
     public String getNomeCompleto() {
         return nomeCompleto;
     }
 
     public void setNomeCompleto(String nomeCompleto) {
+        if (nomeCompleto == null || nomeCompleto.trim().isEmpty() || !nomeCompleto.trim().contains(" "))
+            throw new IllegalArgumentException("Por favor, informe NOME e SOBRENOME");
+        if(nomeCompleto.matches("a-zA-z\\s")){
+            throw new IllegalArgumentException("O nome deve conter apenas Letras e Espaços");
+        }
         this.nomeCompleto = nomeCompleto;
     }
 
@@ -53,6 +52,12 @@ public class Pet {
     }
 
     public void setIdade(double idade) {
+        if(idade > 20 || idade < 0){
+            throw new IllegalArgumentException("Idade fora do limite existente.");
+        }
+        if(idade > 0 && idade >1){
+
+        }
         this.idade = idade;
     }
 
