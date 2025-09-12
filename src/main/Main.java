@@ -23,7 +23,7 @@ public class Main {
 
             switch (opcao_selecionada){
                 case 1:
-                    System.out.println("1");
+                    cadastrar.registerPet();
                     break;
                 case 2:
                     System.out.println("2");

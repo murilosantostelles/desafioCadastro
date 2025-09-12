@@ -12,8 +12,7 @@ public class RegisterPet {
     public void registerPet(){
         Scanner leitor = new Scanner(System.in);
         LeitorFormulario leitorFormulario = new LeitorFormulario();
-        List<String> perguntas = leitorFormulario.lerFormulario();
-
-        System.out.println(perguntas.get(0));
+        leitorFormulario.lerPergunta1();
+        leitorFormulario.lerPergunta2();
     }
 }
