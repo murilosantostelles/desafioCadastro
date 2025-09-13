@@ -4,7 +4,7 @@ public class Pet {
     private String nomeCompleto; // somente caracteres de A-Z. Obrigatorio ter nome e sobrenome.
     private PetType petType;
     private PetGender petGender;
-    private PetAdress endereco;
+    private PetAddress endereco;
     private String idade; // permitir digitação de vírgula e ponto + tranformar idade em meses em idade em 0.x anos.
     private String peso; //exceção + permitir digitação de vírgula e ponto
     private String raca; // não permitir digitação de número e nem de caracteres epeciais
@@ -12,6 +12,8 @@ public class Pet {
     public static final String NAO_INFORMADO = "NÃO INFORMADO";
 
 
+    public Pet() {
+    }
 
     public String getNomeCompleto() {
         return nomeCompleto;

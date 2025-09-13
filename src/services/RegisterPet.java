@@ -10,33 +10,40 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RegisterPet {
-    public void registerPet(){
-        Scanner input = new Scanner(System.in);
-        File file = new File("src/resources/formulario.txt");
-        try(FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr)){
+    Scanner leitorUsuario = new Scanner(System.in);
+    public void registerPet() {
+        LeitorFormulario leitorFormulario = new LeitorFormulario();
+        Pet pet01 = new Pet();
 
-            String nomeCompletoColetado = lerNome(br, input);
-            //PetType petType = PetType.valueOf(lerPetType(br,input));
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (BufferedReader br = leitorFormulario.lerFormulario2();) {
+            String nome = lerNome(br,leitorUsuario);
+            pet01.setNomeCompleto(nome);
+
+        }catch (IOException e){
+            System.out.println("Erro na leitura do formulário.");
+            return;
         }
+        System.out.println("Cadastro Concluído.");
+        System.out.println("Pet "+pet01.getNomeCompleto()+" registrado.");
     }
-    private String lerNome(BufferedReader br, Scanner input)throws IOException{
+
+    public String lerNome(BufferedReader br, Scanner leitorUsuario) throws IOException{
         String pergunta = br.readLine();
-        if (pergunta != null){
+        if (pergunta == null) throw new IOException("Arquivo de formulário Inválido");
+
+        String nomeValidado = null;
+        Pet petValidador = new Pet();
+
+        while (nomeValidado == null){
             System.out.println(pergunta);
+            String input = leitorUsuario.nextLine();
+            try {
+                petValidador.setNomeCompleto(input);
+                nomeValidado = input;
+            }catch (IllegalArgumentException e){
+                System.out.println("Erro, tente novamente");
+            }
         }
-        return input.nextLine();
+        return nomeValidado;
     }
-
-    private String lerPetType(BufferedReader br, Scanner input)throws IOException{
-        PetType pergunta = PetType.valueOf(br.readLine());
-        if(pergunta != null){
-            System.out.println(pergunta);
-        }
-        return input.nextLine();
-    }
-
-
 }

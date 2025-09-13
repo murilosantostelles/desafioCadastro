@@ -1,6 +1,6 @@
 package pet;
 
-public class PetAdress {
+public class PetAddress {
     private String numeroCasa;
     private String cidade;
     private String rua;
