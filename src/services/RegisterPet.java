@@ -17,7 +17,7 @@ public class RegisterPet {
             BufferedReader br = new BufferedReader(fr)){
 
             String nomeCompletoColetado = lerNome(br, input);
-            PetType petType = PetType.valueOf(lerPetType(br,input));
+            //PetType petType = PetType.valueOf(lerPetType(br,input));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,6 +29,7 @@ public class RegisterPet {
         }
         return input.nextLine();
     }
+
     private String lerPetType(BufferedReader br, Scanner input)throws IOException{
         PetType pergunta = PetType.valueOf(br.readLine());
         if(pergunta != null){
@@ -36,4 +37,6 @@ public class RegisterPet {
         }
         return input.nextLine();
     }
+
+
 }

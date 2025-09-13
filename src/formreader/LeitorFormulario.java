@@ -36,7 +36,7 @@ public class LeitorFormulario {
             e.printStackTrace();
         }
     }
-    public void lerPergunta2(){
+   /*public void lerPergunta2(){
         File file = new File("src/resources/formulario.txt");
         try(FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr)){
@@ -49,4 +49,6 @@ public class LeitorFormulario {
             e.printStackTrace();
         }
     }
+
+    */
 }

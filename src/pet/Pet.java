@@ -81,7 +81,7 @@ public class Pet {
                 throw new IllegalArgumentException("Peso fora do limite estabelecido.");
             }
             this.peso = entradaNormalizada; //testar depois recebendo peso ao invés de entradaNormalizada.
-        } catch(NumberFormatException){
+        } catch(NumberFormatException e){
             throw new IllegalArgumentException("Formato inválido. Use apenas números, ou números com ponto ou vírgula.");
         }
     }
