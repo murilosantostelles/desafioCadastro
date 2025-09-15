@@ -18,26 +18,37 @@ public class LeitorFormulario {
             e.printStackTrace();
         }
     }
-    public BufferedReader abrirLeitor() throws IOException {
-        InputStream inputStream = getClass().getResourceAsStream("/formulario.txt");
-        if (inputStream == null) {
-            throw new IOException("Arquivo 'formulario.txt' não encontrado nos resources.");
-        }
-        return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-    }
 
-    public BufferedReader lerFormulario2(){
+    public String[] lerPerguntaForm (int contador) {
         File file = new File("src/resources/formulario.txt");
-        try(FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr)){
+        String[] perguntas = null;
+        try (FileReader fr = new FileReader(file);
+             BufferedReader br = new BufferedReader(fr)) {
             String linha;
-            while((linha = br.readLine()) != null){
-                System.out.println(linha);
+            perguntas = new String[13];
+            contador = 0;
+            while ((linha = br.readLine()) != null) {
+                perguntas[contador] = linha;
+                contador++;
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return perguntas;
+    }
+
+    public static void main(String[] args) {
+        LeitorFormulario leitorPergunta = new LeitorFormulario();
+        String[] todasAsPerguntas = leitorPergunta.lerPerguntaForm(1);
+
+        System.out.println("Pergunta 1:");
+        System.out.println(todasAsPerguntas[0]);
+
+        System.out.println("Pergunta 2:");
+        System.out.println(todasAsPerguntas[2]);
+
+        System.out.println("Pergunta 3:");
+        System.out.println(todasAsPerguntas[4]);
     }
 }
 

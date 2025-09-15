@@ -12,7 +12,6 @@ public class Main {
 
 
         RegisterPet cadastrar = new RegisterPet();
-
         PrintMainMenu printMainMenu = new PrintMainMenu();
         int opcao_selecionada;
 
