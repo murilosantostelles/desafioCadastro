@@ -32,6 +32,9 @@ public class PetAddress {
             this.cidade = NAO_INFORMADO;
             return;
         }
+        if(!cidade.matches("[\\p{L}\\s]+")){
+            throw new IllegalArgumentException("A cidade deve conter apenas Letras e Espaços");
+        }
         this.cidade = cidade;
     }
 

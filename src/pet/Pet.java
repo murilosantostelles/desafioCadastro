@@ -15,6 +15,26 @@ public class Pet {
     public Pet() {
     }
 
+    @Override
+    public String toString() {
+        String nome = (this.nomeCompleto == null) ? Pet.NAO_INFORMADO : this.nomeCompleto;
+        String tipo = (this.petType == null) ? Pet.NAO_INFORMADO : this.petType.toString();
+        String genero = (this.petGender == null) ? Pet.NAO_INFORMADO : this.petGender.toString();
+        String enderecoStr = (this.endereco == null) ? Pet.NAO_INFORMADO : this.endereco.toString();
+        String idadeStr = (this.idade == null) ? Pet.NAO_INFORMADO : this.idade;
+        String pesoStr = (this.peso == null) ? Pet.NAO_INFORMADO : this.peso;
+        String racaStr = (this.raca == null) ? Pet.NAO_INFORMADO : this.raca;
+        return "Pet{" +
+                "nomeCompleto='" + nomeCompleto + '\'' +
+                ", petType=" + petType +
+                ", petGender=" + petGender +
+                ", endereco=" + endereco.getCidade()+","+ endereco.getRua()+" - "+endereco.getNumeroCasa()+
+                ", idade='" + idade + '\'' +
+                ", peso='" + peso + '\'' +
+                ", raca='" + raca + '\'' +
+                '}';
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -101,5 +121,13 @@ public class Pet {
             throw new IllegalArgumentException("A raça deve conter apenas Letras e Espaços");
         }
         this.raca = raca;
+    }
+
+    public PetAddress getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(PetAddress endereco) {
+        this.endereco = endereco;
     }
 }

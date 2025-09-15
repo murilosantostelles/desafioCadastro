@@ -36,19 +36,5 @@ public class LeitorFormulario {
         }
         return perguntas;
     }
-
-    public static void main(String[] args) {
-        LeitorFormulario leitorPergunta = new LeitorFormulario();
-        String[] todasAsPerguntas = leitorPergunta.lerPerguntaForm(1);
-
-        System.out.println("Pergunta 1:");
-        System.out.println(todasAsPerguntas[0]);
-
-        System.out.println("Pergunta 2:");
-        System.out.println(todasAsPerguntas[2]);
-
-        System.out.println("Pergunta 3:");
-        System.out.println(todasAsPerguntas[4]);
-    }
 }
 
