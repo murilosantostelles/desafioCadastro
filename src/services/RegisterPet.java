@@ -15,6 +15,7 @@ public class RegisterPet {
         PetAddress adress01 = new PetAddress();
         LeitorFormulario leitorPergunta = new LeitorFormulario();
         String[] todasAsPerguntas = leitorPergunta.lerPerguntaForm(1);
+        PetStorage ps = new PetStorage();
 
         while ((true)){ //Entrada de dados e Validação do nome
             System.out.println(todasAsPerguntas[0]);
@@ -117,5 +118,6 @@ public class RegisterPet {
         }
 
         System.out.println(pet01.toString());
+        ps.salvarPet(pet01, adress01);
     }
 }

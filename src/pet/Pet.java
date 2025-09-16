@@ -28,7 +28,7 @@ public class Pet {
                 "nomeCompleto='" + nomeCompleto + '\'' +
                 ", petType=" + petType +
                 ", petGender=" + petGender +
-                ", endereco=" + endereco.getCidade()+","+ endereco.getRua()+" - "+endereco.getNumeroCasa()+
+                ", endereco=" + endereco.getRua()+","+ endereco.getNumeroCasa()+" - "+endereco.getCidade()+
                 ", idade='" + idade + '\'' +
                 ", peso='" + peso + '\'' +
                 ", raca='" + raca + '\'' +
