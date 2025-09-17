@@ -28,11 +28,26 @@ public class Pet {
                 "nomeCompleto='" + nomeCompleto + '\'' +
                 ", petType=" + petType +
                 ", petGender=" + petGender +
-                ", endereco=" + endereco.getRua()+","+ endereco.getNumeroCasa()+" - "+endereco.getCidade()+
-                ", idade='" + idade + '\'' +
-                ", peso='" + peso + '\'' +
+                ", endereco=" + endereco.getRua()+","+ endereco.getNumeroCasa()+" , "+endereco.getCidade()+
+                ", idade='" + idade +" anos" + '\'' +
+                ", peso='" + peso +"Kg" + '\'' +
                 ", raca='" + raca + '\'' +
                 '}';
+    }
+
+    public String exibirDadosDoPetEmLinha(){
+        String nome = (this.nomeCompleto == null) ? Pet.NAO_INFORMADO : this.nomeCompleto;
+        String tipo = (this.petType == null) ? Pet.NAO_INFORMADO : this.petType.toString();
+        String genero = (this.petGender == null) ? Pet.NAO_INFORMADO : this.petGender.toString();
+        String enderecoStr = (this.endereco == null) ? Pet.NAO_INFORMADO : this.endereco.toString();
+        String idadeStr = (this.idade == null) ? Pet.NAO_INFORMADO : this.idade;
+        String pesoStr = (this.peso == null) ? Pet.NAO_INFORMADO : this.peso;
+        String racaStr = (this.raca == null) ? Pet.NAO_INFORMADO : this.raca;
+
+        return nome +" - " + tipo + " - " + genero + " - " +
+                enderecoStr+ " - " + idadeStr +" anos" + " - " +
+                pesoStr +"Kg" + " - " +
+                racaStr;
     }
 
     public String getNomeCompleto() {

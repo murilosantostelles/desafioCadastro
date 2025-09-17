@@ -2,14 +2,15 @@ package services;
 
 import pet.Pet;
 import pet.PetAddress;
+import pet.PetGender;
+import pet.PetType;
 
 import javax.swing.text.DateFormatter;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PetStorage {
     public void salvarPet(Pet pet01 , PetAddress adress){
@@ -28,11 +29,11 @@ public class PetStorage {
             bw.newLine();
             bw.write(pet01.getPetGender().toString());
             bw.newLine();
-            bw.write(adress.getRua() +", "+ adress.getNumeroCasa()+" - "+adress.getCidade());
+            bw.write(adress.getRua() +", "+ adress.getNumeroCasa()+", "+adress.getCidade());
             bw.newLine();
-            bw.write(pet01.getIdade() + " anos");
+            bw.write(pet01.getIdade());
             bw.newLine();
-            bw.write(pet01.getPeso()+"Kg");
+            bw.write(pet01.getPeso());
             bw.newLine();
             bw.write(pet01.getRaca());
             bw.newLine();
@@ -41,6 +42,47 @@ public class PetStorage {
         } catch (IOException e){
             throw new RuntimeException("Erro ao salvar pet no arquivo."+ e);
         }
+    }
+
+    public List<Pet> carregarTodosOsPets(){
+        List<Pet> petsEncontrados = new ArrayList<>();
+        File diretorio = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados");
+        if (!diretorio.exists() || !diretorio.isDirectory()) {
+            System.out.println("Ainda não há pets cadastrados (diretório não encontrado).");
+            return petsEncontrados;
+        }
+
+        File[] arquivosDosPets = diretorio.listFiles();
+        if (arquivosDosPets == null){
+            return petsEncontrados;
+        }
+        for (File arquivo : arquivosDosPets) {
+            try(BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
+                Pet pet01 = new Pet();
+                PetAddress adress01 = new PetAddress();
+
+                pet01.setNomeCompleto(br.readLine());
+                pet01.setPetType(PetType.fromString(br.readLine()));
+                pet01.setPetGender(PetGender.fromChar(br.readLine().charAt(0)));
+                String linhaEndereco = br.readLine();
+                String[] enderecoSeparado = linhaEndereco.split(",\\s*");
+                adress01.setRua(enderecoSeparado[0].trim());
+                adress01.setNumeroCasa(enderecoSeparado[1].trim());
+                adress01.setCidade(enderecoSeparado[2].trim());
+                pet01.setEndereco(adress01);
+                pet01.setIdade(br.readLine());
+                pet01.setPeso(br.readLine());
+                pet01.setRaca(br.readLine());
+
+
+                petsEncontrados.add(pet01);
+                br.readLine();
+            }catch (Exception e){
+                System.out.println("Ocorreu um erro ao ler o arquivo.");
+                e.printStackTrace();
+            }
+        }
+        return petsEncontrados;
     }
 }
 

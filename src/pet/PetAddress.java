@@ -20,7 +20,7 @@ public class PetAddress {
         if(!numeroCasa.trim().matches("\\d+")){
             throw new IllegalArgumentException("Digite apenas números.");
         }
-        this.numeroCasa = numeroCasa;
+        this.numeroCasa = numeroCasa.trim();
     }
 
     public String getCidade() {

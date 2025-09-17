@@ -14,7 +14,7 @@ public class Main {
 
         PrintMainMenu printMainMenu = new PrintMainMenu();
         RegisterPet cadastrar = new RegisterPet(); // opcao 1
-        SearchPet buscar = new SearchPet(); // opcao 5
+        SearchPet searchPet = new SearchPet(); // opcao 5
         int opcao_selecionada;
 
 
@@ -33,10 +33,10 @@ public class Main {
                     System.out.println("3");
                     break;
                 case 4:
-                    System.out.println("4");
+                    searchPet.listarTodosOsPets();
                     break;
                 case 5:
-                    buscar.iniciarBusca();
+                    searchPet.iniciarBusca();
                     break;
                 case 6:
                     System.out.println("Saindo do sistema...");
