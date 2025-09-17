@@ -5,10 +5,12 @@ import pet.PetAddress;
 import pet.PetGender;
 import pet.PetType;
 
+import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class SearchPet {
     Scanner input = new Scanner(System.in);
@@ -20,11 +22,7 @@ public class SearchPet {
         int tipoBuscaEspecifica = lerTipoDeBuscaEspecifica();
 
         List<Pet> todosOsPets = petStorage.carregarTodosOsPets();
-        int contador = 1;
-        for (Pet pet : todosOsPets) {
-            System.out.println(contador+". "+pet.exibirDadosDoPetEmLinha());
-            contador ++;
-        }
+        exibirResultadosBusca(buscaRefinada(todosOsPets, tipoPetEscolhido,tipoBuscaEspecifica));
     }
 
     public void listarTodosOsPets(){ // Exibido quando o usuário aperta 4 no menu (listar todos os pets)
@@ -41,22 +39,32 @@ public class SearchPet {
         }
         System.out.println(" ");
     }
-    /*
+
     private List<Pet> buscaRefinada(List<Pet> todosOsPets , int tipoPetEscolhido, int tipoBuscaEspecifica){
+        PetType tipoEscolhido = (tipoPetEscolhido == 1) ? PetType.CACHORRO : PetType.GATO;
+        List<Pet> petsFiltrados = new ArrayList<>();
 
-        System.out.println("Buscando...");
-        if(tipoPetEscolhido == 1){
-            switch (tipoBuscaEspecifica){
-                case 1:
-                    String nomeDigitado = input.nextLine();
-                    if(todosOsPets.contains(nomeDigitado)){
-
-                    }
+        for (Pet pet : todosOsPets) {
+            if(pet.getPetType() == tipoEscolhido){
+                petsFiltrados.add(pet);
             }
         }
+        switch (tipoBuscaEspecifica){
+            case 1:
+                System.out.println("Digite o nome para buscar: ");
+                String nomeBusca = input.nextLine();
+                List<Pet> petsFiltradosPorNome = new ArrayList<>();
+                for (Pet pet : petsFiltrados) {
+                    if(pet.getNomeCompleto().toLowerCase().contains(nomeBusca.toLowerCase())){
+                        petsFiltradosPorNome.add(pet);
+                    }
+                }
+                return petsFiltradosPorNome;
+            default:
+                System.out.println("Opção de busca inválida");
+                return new ArrayList<>();
+        }
     }
-    */
-
 
 
     public void imprimirMenuTipoDeBusca(){
@@ -108,5 +116,13 @@ public class SearchPet {
                 System.out.println("Erro. Entrada de dados inválida. Por favor, digite um número de 1 até 2.");
             }
         }
+    }
+    public void exibirResultadosBusca(List<Pet> todosOsPets){
+        int contador = 1;
+        for (Pet pet : todosOsPets) {
+            System.out.println(contador+". "+pet.exibirDadosDoPetEmLinha());
+            contador++;
+        }
+
     }
 }
