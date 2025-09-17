@@ -20,24 +20,26 @@ public class SearchPet {
         int tipoBuscaEspecifica = lerTipoDeBuscaEspecifica();
 
         List<Pet> todosOsPets = petStorage.carregarTodosOsPets();
-        System.out.println(todosOsPets);
         int contador = 1;
         for (Pet pet : todosOsPets) {
             System.out.println(contador+". "+pet.exibirDadosDoPetEmLinha());
             contador ++;
         }
-
-
     }
 
-    public void listarTodosOsPets(){
+    public void listarTodosOsPets(){ // Exibido quando o usuário aperta 4 no menu (listar todos os pets)
         List<Pet> todosOsPets = petStorage.carregarTodosOsPets();
         if(todosOsPets.isEmpty()){
             System.out.println("Não há pets cadastrados no momento.");
             return;
         }
-        System.out.println("Lista de Pets");
-
+        System.out.println("-=-=-=-=-LISTA DE PETS-==-=-=-=-");
+        int contador = 1;
+        for (Pet pet : todosOsPets) {
+            System.out.println(contador+". "+pet.exibirDadosDoPetEmLinha());
+            contador ++;
+        }
+        System.out.println(" ");
     }
     /*
     private List<Pet> buscaRefinada(List<Pet> todosOsPets , int tipoPetEscolhido, int tipoBuscaEspecifica){

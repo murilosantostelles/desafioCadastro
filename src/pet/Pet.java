@@ -45,7 +45,7 @@ public class Pet {
         String racaStr = (this.raca == null) ? Pet.NAO_INFORMADO : this.raca;
 
         return nome +" - " + tipo + " - " + genero + " - " +
-                enderecoStr+ " - " + idadeStr +" anos" + " - " +
+                endereco.getRua()+", "+endereco.getNumeroCasa()+", "+endereco.getCidade()+ " - " + idadeStr +" anos" + " - " +
                 pesoStr +"Kg" + " - " +
                 racaStr;
     }
