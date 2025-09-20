@@ -11,14 +11,26 @@ public class SearchPet {
     Scanner input = new Scanner(System.in);
     PetStorage petStorage = new PetStorage();
 
-    public void iniciarBusca(){ // opcao 5 do menu principal
+    public void iniciarBusca(){ // opcao 5 do menu principal (pega o return do metodo abaixo e exibe os pets)
+        List<Pet> resultadosBusca = retornarListaFiltrada();
+        exibirResultadosBusca(resultadosBusca);
+    }
+
+    public List<Pet> retornarListaFiltrada(){
+        List<Pet> todosOsPets = petStorage.carregarTodosOsPets();
+        if(todosOsPets.isEmpty()){
+            System.out.println("Nenhum pet encontrado.");
+            return new ArrayList<>();
+        }
         System.out.println("Escolha o tipo de Pet que deseja Buscar:");
         int tipoPetEscolhido = lerBuscaCachorroOuGato();
         imprimirMenuTipoDeBusca();
         int tipoBuscaEspecifica = lerTipoDeBuscaEspecifica();
 
-        List<Pet> todosOsPets = petStorage.carregarTodosOsPets();
-        exibirResultadosBusca(buscaRefinada(todosOsPets, tipoPetEscolhido,tipoBuscaEspecifica));
+        List<Pet> carregaTodosOsPets = petStorage.carregarTodosOsPets();
+
+        List<Pet> petsFiltrados = buscaRefinada(carregaTodosOsPets,tipoPetEscolhido,tipoBuscaEspecifica);
+        return petsFiltrados;
     }
 
     private List<Pet> buscaRefinada(List<Pet> todosOsPets , int tipoPetEscolhido, int tipoBuscaEspecifica){ //aplicação dos filtros na busca

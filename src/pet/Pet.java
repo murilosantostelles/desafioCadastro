@@ -8,6 +8,7 @@ public class Pet {
     private String idade; // permitir digitação de vírgula e ponto + tranformar idade em meses em idade em 0.x anos.
     private String peso; //exceção + permitir digitação de vírgula e ponto
     private String raca; // não permitir digitação de número e nem de caracteres epeciais
+    private String fileName;
 
     public static final String NAO_INFORMADO = "NÃO INFORMADO";
 
@@ -84,7 +85,7 @@ public class Pet {
     }
 
     public void setIdade(String idade) {
-        if(idade == null || idade.trim().isEmpty()){
+        if(idade == null || idade.trim().isEmpty() || idade.trim().equalsIgnoreCase(NAO_INFORMADO)){
             this.idade = NAO_INFORMADO;
             return;
         }
@@ -107,7 +108,7 @@ public class Pet {
     }
 
     public void setPeso(String peso) {
-        if(peso == null || peso.trim().isEmpty()){
+        if(peso == null || peso.trim().isEmpty() || peso.trim().equalsIgnoreCase(NAO_INFORMADO)){
             this.peso = NAO_INFORMADO;
             return;
         }
@@ -144,5 +145,13 @@ public class Pet {
 
     public void setEndereco(PetAddress endereco) {
         this.endereco = endereco;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

@@ -13,7 +13,7 @@ public class PetAddress {
     }
 
     public void setNumeroCasa(String numeroCasa) {
-        if(numeroCasa == null || numeroCasa.trim().isEmpty()){
+        if(numeroCasa == null || numeroCasa.trim().isEmpty() || numeroCasa.trim().equalsIgnoreCase(NAO_INFORMADO)){
             this.numeroCasa = NAO_INFORMADO;
             return;
         }

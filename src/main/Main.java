@@ -5,8 +5,9 @@ import formreader.LeitorFormulario;
 import services.PrintMainMenu;
 import services.RegisterPet;
 import services.SearchPet;
+import services.UpdatePet;
 
-public class Main {
+public class  Main {
     public static void main(String[] args) {
         LeitorFormulario leitorFormulario = new LeitorFormulario();
         leitorFormulario.lerFormulario(); // chamar isso para a OPÇÃO 1.
@@ -14,6 +15,7 @@ public class Main {
 
         PrintMainMenu printMainMenu = new PrintMainMenu();
         RegisterPet cadastrar = new RegisterPet(); // opcao 1
+        UpdatePet updatePet = new UpdatePet();
         SearchPet searchPet = new SearchPet(); // opcao 5
         int opcao_selecionada;
 
@@ -27,7 +29,7 @@ public class Main {
                     cadastrar.registerPet();
                     break;
                 case 2:
-                    System.out.println("2");
+                    updatePet.iniciarUpdtatePet();
                     break;
                 case 3:
                     System.out.println("3");

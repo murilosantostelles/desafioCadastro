@@ -65,15 +65,20 @@ public class PetStorage {
                 pet01.setPetType(PetType.fromString(br.readLine()));
                 pet01.setPetGender(PetGender.fromChar(br.readLine().charAt(0)));
                 String linhaEndereco = br.readLine();
-                String[] enderecoSeparado = linhaEndereco.split(",\\s*");
-                adress01.setRua(enderecoSeparado[0].trim());
-                adress01.setNumeroCasa(enderecoSeparado[1].trim());
-                adress01.setCidade(enderecoSeparado[2].trim());
+                if (linhaEndereco != null && !linhaEndereco.equalsIgnoreCase("NAO INFORMADO")){
+                    String[] enderecoSeparado = linhaEndereco.split(",\\s*");
+                    if(enderecoSeparado.length == 3){
+                        adress01.setRua(enderecoSeparado[0].trim());
+                        adress01.setNumeroCasa(enderecoSeparado[1].trim());
+                        adress01.setCidade(enderecoSeparado[2].trim());
+                    }
+                }
                 pet01.setEndereco(adress01);
                 pet01.setIdade(br.readLine());
                 pet01.setPeso(br.readLine());
                 pet01.setRaca(br.readLine());
 
+                pet01.setFileName(arquivo.getName());
 
                 petsEncontrados.add(pet01);
                 br.readLine();
@@ -83,6 +88,24 @@ public class PetStorage {
             }
         }
         return petsEncontrados;
+    }
+
+    public void atualizarPet (Pet petAtualizado) throws IOException{
+        String nomeAntigoDoArquivo = petAtualizado.getFileName();
+        if(nomeAntigoDoArquivo == null || nomeAntigoDoArquivo.isEmpty()){
+            throw new IOException("Não há arquivos para esse Pet");
+        }
+        File arquivoAntigo = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados", nomeAntigoDoArquivo);
+        if (arquivoAntigo.exists()){
+            if (!arquivoAntigo.delete()){
+                throw new IOException("Não foi possível atualizar. Não consegui deletar o arquivo antigo.");
+            }
+        }
+        try{
+            salvarPet(petAtualizado, petAtualizado.getEndereco());
+        }catch (Exception e){
+            throw new IOException("Falha ao salvar novo arquivo após atualização.", e);
+        }
     }
 }
 
