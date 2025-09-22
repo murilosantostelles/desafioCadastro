@@ -2,13 +2,12 @@ package main;
 
 
 import formreader.LeitorFormulario;
-import services.PrintMainMenu;
-import services.RegisterPet;
-import services.SearchPet;
-import services.UpdatePet;
+import services.*;
+
+import java.io.IOException;
 
 public class  Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         LeitorFormulario leitorFormulario = new LeitorFormulario();
         leitorFormulario.lerFormulario(); // chamar isso para a OPÇÃO 1.
 
@@ -17,6 +16,7 @@ public class  Main {
         RegisterPet cadastrar = new RegisterPet(); // opcao 1
         UpdatePet updatePet = new UpdatePet();
         SearchPet searchPet = new SearchPet(); // opcao 5
+        DeletePet deletePet = new DeletePet();
         int opcao_selecionada;
 
 
@@ -32,7 +32,7 @@ public class  Main {
                     updatePet.iniciarUpdtatePet();
                     break;
                 case 3:
-                    System.out.println("3");
+                    deletePet.iniciarDelete();
                     break;
                 case 4:
                     searchPet.listarTodosOsPets();

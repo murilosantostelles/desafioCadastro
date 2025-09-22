@@ -107,5 +107,18 @@ public class PetStorage {
             throw new IOException("Falha ao salvar novo arquivo após atualização.", e);
         }
     }
+
+    public void deletarPet(Pet petParaDeletar) throws IOException{
+        String nomeArquivo = petParaDeletar.getFileName();
+         if(nomeArquivo == null || nomeArquivo.isEmpty()){
+             throw new IOException("Não há arquivos para esse pet.");
+         }
+         File arquivo = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados", nomeArquivo);
+         if(arquivo.exists()){
+             if(!arquivo.delete()){
+                 throw new IOException("Não foi possível deletar "+petParaDeletar.getNomeCompleto());
+             }
+         }
+    }
 }
 
