@@ -19,7 +19,7 @@ public class PetStorage {
         String timestamp = localDateTime.format(dtf);
         String nomeFileFormatado = pet01.getNomeCompleto().toUpperCase().replaceAll("\\s+","");
         String nomeCompletoFile = timestamp+"-"+nomeFileFormatado+".txt";
-        File fileFinal = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados", nomeCompletoFile);
+        File fileFinal = new File(System.getProperty("user.dir") + "/src/petsCadastrados", nomeCompletoFile);
 
         try(FileWriter fw = new FileWriter(fileFinal);
             BufferedWriter bw = new BufferedWriter(fw)){
@@ -46,7 +46,7 @@ public class PetStorage {
 
     public List<Pet> carregarTodosOsPets(){
         List<Pet> petsEncontrados = new ArrayList<>();
-        File diretorio = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados");
+        File diretorio = new File(System.getProperty("user.dir") + "/src/petsCadastrados");
         if (!diretorio.exists() || !diretorio.isDirectory()) {
             System.out.println("Ainda não há pets cadastrados (diretório não encontrado).");
             return petsEncontrados;
@@ -95,7 +95,7 @@ public class PetStorage {
         if(nomeAntigoDoArquivo == null || nomeAntigoDoArquivo.isEmpty()){
             throw new IOException("Não há arquivos para esse Pet");
         }
-        File arquivoAntigo = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados", nomeAntigoDoArquivo);
+        File arquivoAntigo = new File(System.getProperty("user.dir") + "/src/petsCadastrados", nomeAntigoDoArquivo);
         if (arquivoAntigo.exists()){
             if (!arquivoAntigo.delete()){
                 throw new IOException("Não foi possível atualizar. Não consegui deletar o arquivo antigo.");
@@ -113,7 +113,7 @@ public class PetStorage {
          if(nomeArquivo == null || nomeArquivo.isEmpty()){
              throw new IOException("Não há arquivos para esse pet.");
          }
-         File arquivo = new File("/home/usuario/IdeaProjects/desafioCadastro/src/petsCadastrados", nomeArquivo);
+        File arquivo = new File(System.getProperty("user.dir") + "/src/petsCadastrados", nomeArquivo);
          if(arquivo.exists()){
              if(!arquivo.delete()){
                  throw new IOException("Não foi possível deletar "+petParaDeletar.getNomeCompleto());
